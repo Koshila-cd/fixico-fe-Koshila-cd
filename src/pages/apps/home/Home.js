@@ -63,7 +63,6 @@ export default function SubmitForm() {
                 <Button
                   variant="outlined"
                   color="primary"
-                  onClick={handleNext}
                   href='/apps/submit-reports/SubmitForm'
                   sx={{ fontSize:20, mt: 3, ml: 1, pl: 5, pr: 5, pt: 3, pb: 3, width: '70%' }}
                 >
@@ -74,7 +73,7 @@ export default function SubmitForm() {
                 <Button
                   variant="outlined"
                   color="primary"
-                  onClick={handleNext}
+                  href='/apps/view-reports/ViewReports'
                   sx={{ fontSize:20, mt: 3, ml: 1, pl: 5, pr: 5, pt: 3, pb: 3, width: '70%' }}
                 >
                   View Reports

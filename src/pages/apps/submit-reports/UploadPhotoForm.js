@@ -4,25 +4,40 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import { UploadIcon } from '@heroicons/react/solid';
+import { Button, CircularProgress } from '@mui/material';
 
 function UploadPhotoForm() {
+  const [isUploading, setIsUploading] = React.useState(false);
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Payment method
+        Upload Photo
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cardName"
-            label="Name on card"
-            fullWidth
-            autoComplete="cc-name"
-            variant="standard"
-          />
+        <Grid item xs={12}>
+          <div className="absolute inset-0 flex items-center justify-center z-20">
+                                            {isUploading ? (
+                                                <CircularProgress color="primary" />
+                                            ) : (
+          <div>
+            <label htmlFor="button-file" className="flex p-8 cursor-pointer">
+              
+              <Button>
+              <input
+                accept="image/*"
+                className="hidden"
+                id="button-file"
+                type="file"
+              />
+            
+          </Button>
+            </label>
+          </div>
+                                            )}
+                                            </div>
         </Grid>
-        <Grid item xs={12} md={6}>
+        {/* <Grid item xs={12} md={6}>
           <TextField
             required
             id="cardNumber"
@@ -41,22 +56,16 @@ function UploadPhotoForm() {
             autoComplete="cc-exp"
             variant="standard"
           />
-        </Grid>
-        <Grid item xs={12} md={6}>
+        </Grid> */}
+        <Grid item xs={12}>
           <TextField
             required
-            id="cvv"
-            label="CVV"
-            helperText="Last three digits on signature strip"
+            id="damageDescription"
+            label="Damage Description"
+            helperText="Please Describe the Damage briefly"
             fullWidth
             autoComplete="cc-csc"
             variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveCard" value="yes" />}
-            label="Remember credit card details for next time"
           />
         </Grid>
       </Grid>

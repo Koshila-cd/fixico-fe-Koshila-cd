@@ -4,6 +4,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
+import { TextField } from '@mui/material';
 
 const products = [
   {
@@ -41,48 +42,77 @@ function CustomerInformationForm() {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Order summary
+        Customer Information
       </Typography>
-      <List disablePadding>
-        {products.map((product) => (
-          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
-          </ListItem>
-        ))}
-
-        <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="Total" />
-          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $34.06
-          </Typography>
-        </ListItem>
-      </List>
-      <Grid container spacing={2}>
+      <Grid container spacing={3}>
+        
+        <Grid item xs={12}>
+          <TextField
+            required
+            id="driverName"
+            name="driverName"
+            label="Drivers Full Name"
+            fullWidth
+            helperText="Please provide Drivers Full Name with initials"
+            autoComplete="Vehicle information-line1"
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            id="drivingLicense"
+            name="drivingLicense"
+            label="Driving License Number"
+            fullWidth
+            autoComplete="Vehicle information-line2"
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            id="witnessName"
+            name="witnessName"
+            label="Witness Full Name"
+            helperText="Please provide Witnesses Full Name with initials"
+            fullWidth
+            autoComplete="Vehicle information-level2"
+            variant="standard"
+          />
+        </Grid>
+        {/* <Grid item xs={12} >
+          <TextField
+            required
+            id="licenceNo"
+            name="licenceNo"
+            label="Vehicle License Number"
+            fullWidth
+            variant="standard"
+          />
+        </Grid>
         <Grid item xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Shipping
-          </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+          <TextField
+            required
+            id="vehicleMake"
+            name="vehicleMake"
+            label="Vehicle Make"
+            fullWidth
+            autoComplete="given-name"
+            variant="standard"
+          />
         </Grid>
-        <Grid item container direction="column" xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Upload photo
-          </Typography>
-          <Grid container>
-            {payments.map((payment) => (
-              <React.Fragment key={payment.name}>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.name}</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
-                </Grid>
-              </React.Fragment>
-            ))}
-          </Grid>
-        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="vehicleModel"
+            name="vehicleMake"
+            label="Vehicle Model"
+            fullWidth
+            autoComplete="family-name"
+            variant="standard"
+          />
+        </Grid> */}
       </Grid>
     </React.Fragment>
   );
