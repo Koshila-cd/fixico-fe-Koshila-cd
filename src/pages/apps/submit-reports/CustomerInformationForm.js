@@ -5,6 +5,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import { TextField } from '@mui/material';
+import { Controller, useFormContext } from 'react-hook-form';
 
 const products = [
   {
@@ -39,80 +40,68 @@ const payments = [
 ];
 
 function CustomerInformationForm() {
+  //react hook form
+  const methods = useFormContext();
+  const { control, formState } = methods;
+  const { errors } = formState;
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Customer Information
       </Typography>
       <Grid container spacing={3}>
-        
         <Grid item xs={12}>
-          <TextField
-            required
-            id="driverName"
+          <Controller
             name="driverName"
-            label="Drivers Full Name"
-            fullWidth
-            helperText="Please provide Drivers Full Name with initials"
-            autoComplete="Vehicle information-line1"
-            variant="standard"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                required
+                id="driverName"
+                label="Drivers Full Name"
+                variant="standard"
+                fullWidth
+                error={!!errors.driverName}
+                helperText={errors ? errors?.driverName?.message : "Please provide Drivers Full Name with initials"}
+              />
+            )}
           />
         </Grid>
         <Grid item xs={12}>
-          <TextField
-            required
-            id="drivingLicense"
+          <Controller
             name="drivingLicense"
-            label="Driving License Number"
-            fullWidth
-            autoComplete="Vehicle information-line2"
-            variant="standard"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                required
+                id="drivingLicense"
+                label="Driving License Number"
+                variant="standard"
+                fullWidth
+                error={!!errors.drivingLicense}
+                helperText={errors?.drivingLicense?.message}
+              />
+            )}
           />
         </Grid>
         <Grid item xs={12}>
-          <TextField
-            required
-            id="witnessName"
+          <Controller
             name="witnessName"
-            label="Witness Full Name"
-            helperText="Please provide Witnesses Full Name with initials"
-            fullWidth
-            autoComplete="Vehicle information-level2"
-            variant="standard"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                id="witnessName"
+                label="Witness Full Name"
+                variant="standard"
+                fullWidth
+                helperText="Please provide Witnesses Full Name with initials"
+              />
+            )}
           />
         </Grid>
-        {/* <Grid item xs={12} >
-          <TextField
-            required
-            id="licenceNo"
-            name="licenceNo"
-            label="Vehicle License Number"
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="vehicleMake"
-            name="vehicleMake"
-            label="Vehicle Make"
-            fullWidth
-            autoComplete="given-name"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="vehicleModel"
-            name="vehicleMake"
-            label="Vehicle Model"
-            fullWidth
-            autoComplete="family-name"
-            variant="standard"
-          />
-        </Grid> */}
       </Grid>
     </React.Fragment>
   );

@@ -38,6 +38,8 @@ const uploadPhotoSchema = Yup.object().shape({
 });
 
 const custormerInforSchema = Yup.object().shape({
+  driverName: Yup.string().required("Driver's Full Name is required"),
+  drivingLicense: Yup.string().required("Driving License is required")
 });
 
 function getStepContent(step) {
@@ -74,14 +76,20 @@ function SubmitForm() {
   const { isValid, dirtyFields } = formState;
 
   const handleNext = () => {
-    const data = getValues();
-    console.log(data);
     setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+
+  const handleSubmit = () => {
+    setActiveStep(activeStep + 1);
+
+    const data = getValues();
+    console.log(data);
+
+  }
 
   return (
     <FormProvider {...methods}>
@@ -147,7 +155,8 @@ function SubmitForm() {
                   {activeStep === steps.length - 1 ? (
                     <Button
                       variant="contained"
-                      onClick={handleNext}
+                      onClick={handleSubmit}
+                      disabled={_.isEmpty(dirtyFields) || !isValid}
                       sx={{ mt: 3, ml: 1 }}
                     >
                       Submit
