@@ -6,77 +6,128 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 // import { DateField } from '@mui/x-date-pickers/DateField';
 
+import { Controller, useFormContext } from "react-hook-form";
+
 function VehicleInformationForm() {
+
+  //react hook form
+  const methods = useFormContext();
+  const { control, formState } = methods;
+  const { errors } = formState;
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Vehicle Information
       </Typography>
       <Grid container spacing={3}>
-        
+
         <Grid item xs={12}>
-          <TextField
-            required
-            id="vehicleType"
+          <Controller
             name="vehicleType"
-            label="Type of Vehicle"
-            fullWidth
-            autoComplete="Vehicle information-line1"
-            variant="standard"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                required
+                id="vehicleType"
+                label="Type of Vehicle"
+                variant="standard"
+                fullWidth
+                error={!!errors.vehicleType}
+                helperText={errors?.vehicleType?.message}
+              />
+            )}
           />
         </Grid>
         <Grid item xs={12}>
-          <TextField
-            required
-            id="damageDate"
+          <Controller
             name="damageDate"
-            label="Date of Damage"
-            fullWidth
-            autoComplete="Vehicle information-line2"
-            variant="standard"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                required
+                id="damageDate"
+                label="Date of Damage"
+                variant="standard"
+                fullWidth
+                error={!!errors.damageDate}
+                helperText={errors?.damageDate?.message}
+              />
+            )}
           />
         </Grid>
         <Grid item xs={12}>
-          <TextField
-            required
-            id="damageLocation"
+          <Controller
             name="damageLocation"
-            label="Location of Damage"
-            fullWidth
-            autoComplete="Vehicle information-level2"
-            variant="standard"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                required
+                id="damageLocation"
+                label="Location of Damage"
+                variant="standard"
+                fullWidth
+                error={!!errors.damageLocation}
+                helperText={errors?.damageLocation?.message}
+              />
+            )}
           />
         </Grid>
         <Grid item xs={12} >
-          <TextField
-            required
-            id="licenceNo"
+          <Controller
             name="licenceNo"
-            label="Vehicle License Number"
-            fullWidth
-            variant="standard"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                required
+                id="licenceNo"
+                label="Vehicle License Number"
+                variant="standard"
+                fullWidth
+                error={!!errors.licenceNo}
+                helperText={errors?.licenceNo?.message}
+              />
+            )}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="vehicleMake"
+          <Controller
             name="vehicleMake"
-            label="Vehicle Make"
-            fullWidth
-            autoComplete="given-name"
-            variant="standard"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                required
+                id="vehicleMake"
+                label="Vehicle Make"
+                variant="standard"
+                fullWidth
+                error={!!errors.vehicleMake}
+                helperText={errors?.vehicleMake?.message}
+              />
+            )}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="vehicleModel"
-            name="vehicleMake"
-            label="Vehicle Model"
-            fullWidth
-            autoComplete="family-name"
-            variant="standard"
+          <Controller
+            name="vehicleModel"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                required
+                id="vehicleModel"
+                label="Vehicle Model"
+                variant="standard"
+                fullWidth
+                error={!!errors.vehicleModel}
+                helperText={errors?.vehicleModel?.message}
+              />
+            )}
           />
         </Grid>
       </Grid>
