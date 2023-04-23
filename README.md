@@ -11,18 +11,12 @@ In this app, you should be able to do the following things:
 2. View the status of a single previously created Damage Report.
 3. View an overview of all previously created Damage Reports in a list.
 
-## tech Stack
+## Tech Stack
 
 - Next Js platform to create a full-stack Web application by extending the latest React features.
 - React Hook Forms for validation without hassle.
 - Material UI for a comprehensive suite of UI tools.
 - Node server-side.
 - Jest unit testing to ensure correctness of the JavaScript codebase.
-
-## Technical requirements
-
-- Next.js
-- Tailwind or Material UI
-- Either unit or feature (or both) tests.
 
 Note: Credits to [https://mui.com/material-ui/getting-started/templates/] for initial grid frame for the forms used in 'Submit Vehicle Damage Report' page.
