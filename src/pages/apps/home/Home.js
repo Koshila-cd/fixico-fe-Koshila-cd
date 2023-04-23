@@ -7,8 +7,7 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from '../header/header';
 
-const steps = ['Vehicle information', 'Upload photo', 'Customer information'];
-
+// page theme
 const theme = createTheme({
     typography: {
       fontFamily: [
@@ -20,16 +19,10 @@ const theme = createTheme({
       }
   });
 
-export default function SubmitForm() {
-  const [activeStep, setActiveStep] = React.useState(0);
-
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep(activeStep - 1);
-  };
+  /**
+   * Home Component: Consists paths to two main functions of the application.
+   */
+export default function Home() {
 
   return (
     <ThemeProvider theme={theme}>

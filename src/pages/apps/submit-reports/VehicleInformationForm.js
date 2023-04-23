@@ -7,6 +7,9 @@ import { Controller, useForm, useFormContext } from "react-hook-form";
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { vehicles } from '../../../vechilces';
 
+  /**
+   * VehicleInformationForm Component: All Vehicle Information Form related input fields are available in a Grid view.
+   */
 function VehicleInformationForm() {
 
   //react hook form

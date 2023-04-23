@@ -24,6 +24,9 @@ import Header from '../header/header';
 
 const steps = ['Vehicle information', 'Upload photo', 'Customer information'];
 
+  /**
+   * Constant: Yup schema objects defining all Field validations which is then passed to Yup Resolver.
+   */
 const vehicleInforSchema = Yup.object().shape({
   vehicleBrand: Yup.string().required("Brand of Vehicle is required"),
   vehicleModel: Yup.string().required("Model of Vehicle is required"),
@@ -41,6 +44,9 @@ const custormerInforSchema = Yup.object().shape({
   drivingLicense: Yup.string().required("Driving License is required")
 });
 
+  /**
+   * Function: A switch-case to toggle forms.
+   */
 function getStepContent(step) {
   switch (step) {
     case 0:
@@ -54,6 +60,9 @@ function getStepContent(step) {
   }
 }
 
+ /**
+   * Constant: Theme defined for the page.
+   */
 const theme = createTheme({
   typography: {
     fontFamily: [
@@ -62,10 +71,13 @@ const theme = createTheme({
   },
 });
 
+  /**
+   * Submit Form Component: Values of all forms are collected through useForm() methods, 'Submit' and 'Next' button validations, Submit Form data, Upload Image.
+   */
 function SubmitForm() {
   const [activeStep, setActiveStep] = React.useState(0);
 
-  //forms and validation
+  // forms and validation
   const methods = useForm({
     mode: 'onChange',
     defaultValues: {},
@@ -74,6 +86,7 @@ function SubmitForm() {
   const { formState, getValues } = methods;
   const { isValid, dirtyFields } = formState;
 
+  // button handling
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
@@ -84,11 +97,9 @@ function SubmitForm() {
 
   const handleSubmitBtn = () => {
     setActiveStep(activeStep + 1);
-
     const data = getValues();
     console.log(data);
     handleSubmit(data)
-
   }
 
   /**
@@ -96,7 +107,7 @@ function SubmitForm() {
    */
   const handleSubmit = async (payload) => {
 
-    // /api/submit
+    // submit form
     const submitResponse = await fetch(submit, {
       method: 'POST',
       headers: {
@@ -108,7 +119,7 @@ function SubmitForm() {
     const data = await submitResponse.json();
     console.log(data.uuid); // Log the uuid returned by the server
 
-    // /api/upload
+    // upload image
     const uploadPhotoResponse = await fetch('upload', {
       method: 'POST',
       headers: {
@@ -117,15 +128,16 @@ function SubmitForm() {
       body: payload.damagePhoto
     });
 
-    const data2 = await submitResponse.json();
+    const data2 = await uploadPhotoResponse.json();
     console.log(data2.uuid); // Log the uuid returned by the server
   };
 
+  // View report handler
   const [open, setOpen] = React.useState(false);
-
   const handleClickOpen = () => {
     setOpen(true);
   };
+  
   return (
     <FormProvider {...methods}>
       <ThemeProvider theme={theme}>
@@ -133,9 +145,6 @@ function SubmitForm() {
         <Header title={"Submit Vehicle Damage Report"} variant={"h6"} />
         <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
           <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-            {/* <Typography component="h1" variant="h4" align="center">
-            Checkout
-          </Typography> */}
             <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
               {steps.map((label) => (
                 <Step key={label}>

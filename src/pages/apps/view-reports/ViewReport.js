@@ -4,10 +4,14 @@ import { mockReport } from '../../api/mock';
 
 const reportTitles = ['Brand of Vehicle', 'Model of Vehicle', 'Vehicle License Number', 'Date of Damage', 'Location of Damage', 'Damage Description', 'Driver\'s Full Name', 'Driver\'s Licesnse Number', 'Witnesses Full Name']
 
+// slide-in transition for the view report dialog
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
+  /**
+   * ViewReport Component: A single report that is submitted can be viewed as a List formation in a Dialog popup.
+   */
 function ViewReport(props) {
 
     const report = props.page == 'viewReports' ? mockReport : props.report;

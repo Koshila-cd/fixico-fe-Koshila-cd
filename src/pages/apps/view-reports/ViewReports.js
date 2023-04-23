@@ -16,22 +16,25 @@ const theme = createTheme({
   },
 });
 
-function ViewReports() {
+const reportsList = [
+  {
+    "id": 1,
+    "name": "FDR-21-Audi-R8",
+    "date": "12/04/2023",
+    "status": "On Review"
+  },
+  {
+    "id": 2,
+    "name": "FDR-5-Audi-R8",
+    "date": "12/12/2020",
+    "status": "Processed"
+  }
+];
 
-  const reportsList = [
-    {
-      "id": 1,
-      "name": "FDR-21-Audi-R8",
-      "date": "12/04/2023",
-      "status": "On Review"
-    },
-    {
-      "id": 2,
-      "name": "FDR-5-Audi-R8",
-      "date": "12/12/2020",
-      "status": "Processed"
-    }
-  ];
+  /**
+   * ViewReports Component: A Table view of all Damage reports submitted by a user so far. The full report can be viewed by clicking the 'View' button under 'Actions' column.
+   */
+function ViewReports() {
 
   // open view report dialog
   const [open, setOpen] = React.useState(false);

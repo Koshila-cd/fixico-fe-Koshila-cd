@@ -5,6 +5,9 @@ import TextField from '@mui/material/TextField';
 import { Button, CircularProgress } from '@mui/material';
 import { Controller, useFormContext } from 'react-hook-form';
 
+  /**
+   * UploadPhotoForm Component: All upload photo related input fields are available in a Grid view.
+   */
 function UploadPhotoForm() {
   const [isUploading, setIsUploading] = React.useState(false);
 
