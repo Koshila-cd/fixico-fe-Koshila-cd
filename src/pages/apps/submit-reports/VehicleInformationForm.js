@@ -89,7 +89,7 @@ function VehicleInformationForm() {
             )}
           />
         </Grid>
-        <Grid item xs={12} >
+        <Grid item xs={12} sm={6}>
           <Controller
             name="licenceNo"
             control={control}
@@ -107,7 +107,7 @@ function VehicleInformationForm() {
             )}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} sm={6}>
           <Controller
             name="damageDate"
             control={control}
@@ -125,7 +125,7 @@ function VehicleInformationForm() {
             )}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <Controller
             name="damageLocation"
             control={control}

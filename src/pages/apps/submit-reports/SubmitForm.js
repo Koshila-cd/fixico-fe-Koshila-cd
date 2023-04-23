@@ -1,27 +1,25 @@
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Toolbar from '@mui/material/Toolbar';
 import Paper from '@mui/material/Paper';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import VehicleInformationForm from './VehicleInformationForm';
 import UploadPhotoForm from './UploadPhotoForm';
 import CustomerInformationForm from './CustomerInformationForm';
-import { ChevronLeftIcon } from '@heroicons/react/solid';
 import { FormProvider, useForm } from 'react-hook-form';
 import _ from 'lodash';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import submit from '../../api/submit';
+import ViewReport from '../view-reports/viewReport';
+import Header from '../header/header';
 // import upload from '../../api/upload';
 
 const steps = ['Vehicle information', 'Upload photo', 'Customer information'];
@@ -123,28 +121,16 @@ function SubmitForm() {
     console.log(data2.uuid); // Log the uuid returned by the server
   };
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
   return (
     <FormProvider {...methods}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <AppBar
-          position="absolute"
-          color="default"
-          elevation={0}
-          sx={{
-            position: 'relative',
-            borderBottom: (t) => `1px solid ${t.palette.divider}`,
-          }}
-        >
-          <Toolbar>
-            <Button href='/apps/home/Home'>
-              <ChevronLeftIcon className="" />
-            </Button>
-            <Typography variant="h6" color="inherit" >
-              Submit Vehicle Damage Report
-            </Typography>
-          </Toolbar>
-        </AppBar>
+        <Header title={"Submit Vehicle Damage Report"} variant={"h6"} />
         <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
           <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
             {/* <Typography component="h1" variant="h4" align="center">
@@ -163,7 +149,8 @@ function SubmitForm() {
                   Thank you.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your sumission will be processed by Fixico. <a href=''>See your report</a>
+                  Your sumission will be processed by Fixico.<Button onClick={handleClickOpen}>See your report</Button>
+                  <ViewReport setOpen={setOpen} open={open} report={getValues()} />
                 </Typography>
                 <Button
                   variant="contained"

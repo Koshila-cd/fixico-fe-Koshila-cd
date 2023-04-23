@@ -4,7 +4,6 @@ import * as React from 'react';
 
 function Header(props) {
 
-    console.log(props.header)
     return (
         <AppBar
             position="absolute"

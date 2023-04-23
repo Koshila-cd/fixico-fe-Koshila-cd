@@ -4,8 +4,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
+import { Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import Header from '../header/header';
+import ViewReport from './viewReport';
 
 const theme = createTheme({
   typography: {
@@ -32,6 +33,12 @@ function ViewReports() {
     }
   ];
 
+  // open view report dialog
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -55,7 +62,10 @@ function ViewReports() {
                 <TableCell>{report.name}</TableCell>
                 <TableCell>{report.date}</TableCell>
                 <TableCell>{report.status}</TableCell>
-                <TableCell><a href="">view</a></TableCell>
+                <TableCell>
+                  <Button onClick={handleClickOpen}>View</Button>
+                  <ViewReport setOpen={setOpen} open={open} report={null} page={'viewReports'} />
+                </TableCell>
                 </TableRow>
                 );
               })}
