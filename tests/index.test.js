@@ -1,13 +1,14 @@
 import SubmitForm from "../src/pages/apps/home/Home";
 import "@testing-library/jest-dom";
-import React from 'react';
+import React, { useState } from 'react';
 import { fireEvent, render, renderHook, screen } from "@testing-library/react";
 import VehicleInformationForm from "../src/pages/apps/submit-reports/VehicleInformationForm";
 import { useForm, useFormContext } from "react-hook-form";
 import { act } from "react-dom/test-utils";
+import ViewReport from "../src/pages/apps/view-reports/viewReport";
 
 describe('Home component: Submit Damage Report Button', () => {
-    test('clicking the Submit Damage Report button displays the correct link', () => {
+    test('Should display the correct link when clicking the Submit Damage Report button', () => {
         render(<SubmitForm />);
         const link = screen.getByRole('link', { name: "Submit Damage Report" });
         expect(link.getAttribute('href')).toBe('/apps/submit-reports/SubmitForm');
@@ -15,7 +16,7 @@ describe('Home component: Submit Damage Report Button', () => {
 });
 
 describe('Home component: View Reports Button', () => {
-    test('clicking the View Reports button displays the correct link', () => {
+    test('Should display the correct link when clicking the View Reports button', () => {
         render(<SubmitForm />);
         const link = screen.getByRole('link', { name: "View Reports" });
         expect(link.getAttribute('href')).toBe('/apps/view-reports/ViewReports');
@@ -23,7 +24,7 @@ describe('Home component: View Reports Button', () => {
 });
 
 describe('SubmitForm', () => {
-    it('Submits the form correctly', async () => {
+    it('Should submit the form correctly and upload the image', async () => {
       const mockSubmitResponse = { uuid: 'abc123' };
       const mockUploadResponse = { uuid: 'def456' };
   
@@ -46,7 +47,7 @@ describe('SubmitForm', () => {
   });
 
   describe('VehicleInformationForm', () => {
-    test('should validate the "vehicleBrand" field when valid input is provided', async () => {
+    test('Should validate the input fields of VehicleInformationForm when valid input is provided', async () => {
       const { result } = renderHook(() => useForm());
       const methods = result.current;
       const { control, formState } = methods;
@@ -86,3 +87,26 @@ describe('SubmitForm', () => {
     });
   });
   
+describe('ViewReport', () => {
+    const mockReport = {
+      name: 'Mock Report',
+      vehicleBrand: 'Brand',
+      vehicleModel: 'Model',
+      licenceNo: '123',
+      damageDate: '2022-04-24',
+      damageLocation: 'Location',
+      damageDescription: 'Description',
+      driverName: 'Driver Name',
+      drivingLicense: '456',
+      witnessName: 'Witness Name',
+    };
+  
+    test('Should open the dialog popup when ViewReport is set open with a Report object', () => {
+      const { getByRole } = render(
+        <ViewReport open={true} report={mockReport} />
+      );
+  
+      const closeButton = getByRole('button', { name: 'Close' });
+      fireEvent.click(closeButton);
+    });
+  });
