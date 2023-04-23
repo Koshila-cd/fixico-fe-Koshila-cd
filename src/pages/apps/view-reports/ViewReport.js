@@ -16,6 +16,16 @@ function ViewReport(props) {
         props.setOpen(false);
     };
 
+    // common return function to reduce code reuse in lists
+    const returnListItem = (title, value) => {
+        return (
+            <ListItem>
+                <ListItemText primary={title} />
+                <Typography variant="body2">{value}</Typography>
+            </ListItem>
+        );
+    }
+
     return (
         <Dialog
             open={props.open}
@@ -36,46 +46,15 @@ function ViewReport(props) {
                                 {report.name}
                             </Typography>
                             <List disablePadding>
-                                {/* {reportTitles.map((title) => (
-                                    <> */}
-                                <ListItem  >
-                                    <ListItemText primary={'Brand of Vehicle: '} />
-                                    <Typography variant="body2">{report.vehicleBrand}</Typography>
-                                </ListItem>
-                                <ListItem  >
-                                    <ListItemText primary={'Model of Vehicle: '} />
-                                    <Typography variant="body2">{report.vehicleModel}</Typography>
-                                </ListItem>
-                                <ListItem  >
-                                    <ListItemText primary={'Vehicle License Number: '} />
-                                    <Typography variant="body2">{report.licenceNo}</Typography>
-                                </ListItem>
-                                <ListItem  >
-                                    <ListItemText primary={'Date of Damage: '} />
-                                    <Typography variant="body2">{report.damageDate}</Typography>
-                                </ListItem>
-                                <ListItem  >
-                                    <ListItemText primary={'Location of Damage: '} />
-                                    <Typography variant="body2">{report.damageLocation}</Typography>
-                                </ListItem>
-                                <ListItem  >
-                                    <ListItemText primary={'Damage Description: '} />
-                                    <Typography variant="body2">{report.damageDescription}</Typography>
-                                </ListItem>
-                                <ListItem  >
-                                    <ListItemText primary={'Driver\'s Full Name: '} />
-                                    <Typography variant="body2">{report.driverName}</Typography>
-                                </ListItem>
-                                <ListItem  >
-                                    <ListItemText primary={'Driver\'s Licesnse Number: '} />
-                                    <Typography variant="body2">{report.drivingLicense}</Typography>
-                                </ListItem>
-                                <ListItem  >
-                                    <ListItemText primary={'Witnesses Full Name: '} />
-                                    <Typography variant="body2">{report.witnessName}</Typography>
-                                </ListItem>
-                                {/* </>
-                                ))} */}
+                                {returnListItem(reportTitles[0], report.vehicleBrand)}
+                                {returnListItem(reportTitles[1], report.vehicleModel)}
+                                {returnListItem(reportTitles[2], report.licenceNo)}
+                                {returnListItem(reportTitles[3], report.damageDate)}
+                                {returnListItem(reportTitles[4], report.damageLocation)}
+                                {returnListItem(reportTitles[5], report.damageDescription)}
+                                {returnListItem(reportTitles[6], report.driverName)}
+                                {returnListItem(reportTitles[7], report.drivingLicense)}
+                                {returnListItem(reportTitles[8], report.witnessName)}
                             </List>
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
