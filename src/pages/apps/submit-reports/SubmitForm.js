@@ -21,16 +21,17 @@ import _ from 'lodash';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import submit from '../../api/submit';
+// import upload from '../../api/upload';
 
 const steps = ['Vehicle information', 'Upload photo', 'Customer information'];
 
 const vehicleInforSchema = Yup.object().shape({
-  vehicleType: Yup.string().required("Type of Vehicle is required"),
+  vehicleBrand: Yup.string().required("Brand of Vehicle is required"),
+  vehicleModel: Yup.string().required("Model of Vehicle is required"),
   damageDate: Yup.string().required("Date of Damage is required"),
   damageLocation: Yup.string().required("Location of Damage is required"),
   licenceNo: Yup.string().required("Vehicle License Number is required"),
-  vehicleMake: Yup.string().required("Vehicle Make is required"),
-  vehicleModel: Yup.string().required("Vehicle Model is required")
 });
 
 const uploadPhotoSchema = Yup.object().shape({
@@ -83,13 +84,44 @@ function SubmitForm() {
     setActiveStep(activeStep - 1);
   };
 
-  const handleSubmit = () => {
+  const handleSubmitBtn = () => {
     setActiveStep(activeStep + 1);
 
     const data = getValues();
     console.log(data);
+    handleSubmit(data)
 
   }
+
+  /**
+   * Form Submit
+   */
+  const handleSubmit = async (payload) => {
+
+    // /api/submit
+    const submitResponse = await fetch(submit, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: payload
+    });
+    
+    const data = await submitResponse.json();
+    console.log(data.uuid); // Log the uuid returned by the server
+
+    // /api/upload
+    const uploadPhotoResponse = await fetch('upload', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: payload.damagePhoto
+    });
+
+    const data2 = await submitResponse.json();
+    console.log(data2.uuid); // Log the uuid returned by the server
+  };
 
   return (
     <FormProvider {...methods}>
@@ -155,7 +187,7 @@ function SubmitForm() {
                   {activeStep === steps.length - 1 ? (
                     <Button
                       variant="contained"
-                      onClick={handleSubmit}
+                      onClick={handleSubmitBtn}
                       disabled={_.isEmpty(dirtyFields) || !isValid}
                       sx={{ mt: 3, ml: 1 }}
                     >

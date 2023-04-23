@@ -26,16 +26,22 @@ function UploadPhotoForm() {
             ) : (
               <div>
                 <label htmlFor="button-file" className="flex p-8 cursor-pointer">
-
-                  <Button>
-                    <input
-                      accept="image/*"
-                      className="hidden"
-                      id="button-file"
-                      type="file"
-                    />
-
-                  </Button>
+                  <Controller
+                    name="damagePhoto"
+                    control={control}
+                    render={({ field }) => (
+                      <Button>
+                        <input
+                          {...field}
+                          accept="image/*"
+                          className="hidden"
+                          id="damagePhoto"
+                          type="file"
+                          fullWidth
+                        />
+                      </Button>
+                    )}
+                  />
                 </label>
               </div>
             )}

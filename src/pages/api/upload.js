@@ -1,6 +1,15 @@
 import formidable from "formidable";
 import path from "path";
-import { renameSync } from "fs";
+// import { renameSync } from "fs";
+
+let renameSync;
+
+if (process.browser) {
+  renameSync = () => {}; // A dummy function to use on client-side
+} else {
+  const { renameSync: renameSyncServer } = require('fs');
+  renameSync = renameSyncServer;
+}
 
 export const config = {
   api: {
