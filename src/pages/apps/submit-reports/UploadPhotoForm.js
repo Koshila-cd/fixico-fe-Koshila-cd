@@ -60,7 +60,7 @@ function UploadPhotoForm() {
                 variant="standard"
                 fullWidth
                 error={!!errors.damageDescription}
-                helperText={errors?.damageDescription?.message}
+                helpertext={errors?.damageDescription?.message}
               />
             )}
           />

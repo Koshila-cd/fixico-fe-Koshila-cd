@@ -1,15 +1,11 @@
 import * as React from 'react';
 
 import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
 import Container from '@mui/material/Container';
-import Toolbar from '@mui/material/Toolbar';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { ChevronLeftIcon } from '@heroicons/react/solid';
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
+import Header from '../header/header';
 
 const theme = createTheme({
   typography: {
@@ -39,24 +35,7 @@ function ViewReports() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppBar
-        position="absolute"
-        color="default"
-        elevation={0}
-        sx={{
-          position: 'relative',
-          borderBottom: (t) => `1px solid ${t.palette.divider}`,
-        }}
-      >
-        <Toolbar>
-          <Button href='/apps/home/Home'>
-            <ChevronLeftIcon className="" />
-          </Button>
-          <Typography variant="h6" color="inherit" >
-            Damage Reports
-            </Typography>
-        </Toolbar>
-      </AppBar>
+      <Header title="Damage Reports" variant="h6" />
       <Container component="main" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }, width: "100%" }}>
         {reportsList && reportsList.length > 0 ? (

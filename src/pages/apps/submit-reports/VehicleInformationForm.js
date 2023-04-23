@@ -2,8 +2,6 @@ import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 
 import { Controller, useForm, useFormContext } from "react-hook-form";
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
@@ -40,7 +38,7 @@ function VehicleInformationForm() {
                   id="vehicleBrand"
                   required
                   error={!!errors.vehicleBrand}
-                  helperText={errors?.vehicleBrand?.message}
+                  helpertext={errors?.vehicleBrand?.message}
                   onChange={(e) => {
                     const selectedBrandName = e.target.value;
                     const selectedBrand = vehicleBrands.find((brand) => brand.name === selectedBrandName);
@@ -71,7 +69,7 @@ function VehicleInformationForm() {
                   id="vehicleModel"
                   required
                   error={!!errors.vehicleModel}
-                  helperText={errors?.vehicleModel?.message}
+                  helpertext={errors?.vehicleModel?.message}
                 >
                   {selectedBrand ? (
                     selectedBrand.models.map((model) => (
@@ -104,7 +102,7 @@ function VehicleInformationForm() {
                 variant="standard"
                 fullWidth
                 error={!!errors.licenceNo}
-                helperText={errors?.licenceNo?.message}
+                helpertext={errors?.licenceNo?.message}
               />
             )}
           />
@@ -122,7 +120,7 @@ function VehicleInformationForm() {
                 variant="standard"
                 fullWidth
                 error={!!errors.damageDate}
-                helperText={errors?.damageDate?.message}
+                helpertext={errors?.damageDate?.message}
               />
             )}
           />
@@ -140,7 +138,7 @@ function VehicleInformationForm() {
                 variant="standard"
                 fullWidth
                 error={!!errors.damageLocation}
-                helperText={errors?.damageLocation?.message}
+                helpertext={errors?.damageLocation?.message}
               />
             )}
           />

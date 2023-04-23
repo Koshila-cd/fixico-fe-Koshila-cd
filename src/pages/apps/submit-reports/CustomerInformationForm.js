@@ -63,7 +63,7 @@ function CustomerInformationForm() {
                 variant="standard"
                 fullWidth
                 error={!!errors.driverName}
-                helperText={errors ? errors?.driverName?.message : "Please provide Drivers Full Name with initials"}
+                helpertext={errors ? errors?.driverName?.message : "Please provide Drivers Full Name with initials"}
               />
             )}
           />
@@ -81,7 +81,7 @@ function CustomerInformationForm() {
                 variant="standard"
                 fullWidth
                 error={!!errors.drivingLicense}
-                helperText={errors?.drivingLicense?.message}
+                helpertext={errors?.drivingLicense?.message}
               />
             )}
           />
@@ -97,7 +97,7 @@ function CustomerInformationForm() {
                 label="Witness Full Name"
                 variant="standard"
                 fullWidth
-                helperText="Please provide Witnesses Full Name with initials"
+                helpertext="Please provide Witnesses Full Name with initials"
               />
             )}
           />
