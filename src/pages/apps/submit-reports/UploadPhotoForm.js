@@ -15,6 +15,11 @@ function UploadPhotoForm() {
   const { control, formState } = methods;
   const { errors } = formState;
 
+  const [selectedFile, setSelectedFile] = React.useState(null);
+  const handleFileInput = (newImage) => {
+    setSelectedFile(newImage);
+  };
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -23,26 +28,27 @@ function UploadPhotoForm() {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <div className="absolute inset-0 flex items-center justify-center z-20">
-              <div>
-                <label htmlFor="button-file" className="flex p-8 cursor-pointer">
-                  <Controller
-                    name="damagePhoto"
-                    control={control}
-                    render={({ field }) => (
-                      <Button>
-                        <input
-                          {...field}
-                          accept="image/*"
-                          className="hidden"
-                          id="damagePhoto"
-                          type="file"
-                          fullWidth
-                        />
-                      </Button>
-                    )}
-                  />
-                </label>
-              </div>
+            <div>
+              <label htmlFor="button-file" className="flex p-8 cursor-pointer">
+                <Controller
+                  name="damagePhoto"
+                  control={control}
+                  render={({ field }) => (
+                    <Button>
+                      <input
+                        {...field}
+                        accept="image/*"
+                        className="hidden"
+                        id="damagePhoto"
+                        type="file"
+                        multiple
+                        fullWidth
+                      />
+                    </Button>
+                  )}
+                />
+              </label>
+            </div>
           </div>
         </Grid>
         <Grid item xs={12}>

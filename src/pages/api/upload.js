@@ -1,21 +1,6 @@
 import formidable from "formidable";
 import path from "path";
-// import { renameSync } from "fs";
-
-let renameSync;
-
-if (process.browser) {
-  renameSync = () => {}; // A dummy function to use on client-side
-} else {
-  const { renameSync: renameSyncServer } = require('fs');
-  renameSync = renameSyncServer;
-}
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+import { renameSync } from "fs";
 
 export default async function upload(req, res) {
   if (req.method !== "POST") {
@@ -29,6 +14,7 @@ export default async function upload(req, res) {
 
   return new Promise((resolve, reject) => {
     form.parse(req, async (err, fields, files) => {
+      console.log(files)
       if (err) {
         res.status(500).json({ error: err.message });
         return resolve();
