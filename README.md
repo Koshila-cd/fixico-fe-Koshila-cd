@@ -19,5 +19,5 @@ In this app, you should be able to do the following things:
 - Node server-side.
 - Jest unit testing to ensure correctness of the JavaScript codebase.
 
-Note 1: GitHub URL - https://github.com/Koshila-cd/fixico-fe-Koshila-cd (Branch - Main)
-Note 2: Credits to [https://mui.com/material-ui/getting-started/templates/] for initial grid frame for the forms used in 'Submit Vehicle Damage Report' page.
+All changes are in Branch - Main.
+Note 1: Credits to [https://mui.com/material-ui/getting-started/templates/] for initial grid frame for the forms used in 'Submit Vehicle Damage Report' page.
