@@ -25,7 +25,7 @@ function Header(props) {
                 </Toolbar>
             ) : (
                 <Toolbar>
-                    <Button href='/apps/home/Home'>
+                    <Button href='/'>
                         <ChevronLeftIcon className="" />
                     </Button>
                     <Typography variant={props.variant} color="inherit" >
