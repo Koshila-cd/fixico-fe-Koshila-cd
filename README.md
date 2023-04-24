@@ -3,7 +3,7 @@
 ## Introduction
 
 Fixico's customers need a way to submit their damages. This project is the first version of a Damage Report submission app.
-The wireframes of the app are in [public/images/wireframes].
+Wireframes on Lucidchart: [https://l1nq.com/qn749].
 
 In this app, you should be able to do the following things:
 
@@ -25,6 +25,9 @@ In this app, you should be able to do the following things:
 - Axios as HTTP client.
 - Heroicons for attractive SVG icons.
 
-All changes are in Branch - Main.
+Run the propject on development server using following commands:
+`npm install`
+`npm run build`
+`npm run dev`
 
 Note: Credits to [https://mui.com/material-ui/getting-started/templates/] for initial grid frame for the forms used in 'Submit Vehicle Damage Report' page.
