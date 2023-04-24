@@ -1,13 +1,4 @@
-// import { writeFileSync } from "fs";
-
-let writeFileSync;
-
-if (process.browser) {
-  writeFileSync = () => {}; // A dummy function to use on client-side
-} else {
-  const { writeFileSync: writeFileSyncServer } = require('fs');
-  writeFileSync = writeFileSyncServer;
-}
+import { writeFileSync } from "fs";
 
 export default async function submit(req, res) {
     if (req.method !== "POST") {

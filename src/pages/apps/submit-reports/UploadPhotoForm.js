@@ -15,6 +15,11 @@ function UploadPhotoForm() {
   const { control, formState } = methods;
   const { errors } = formState;
 
+  const [selectedFile, setSelectedFile] = React.useState(null);
+  const handleFileInput = (newImage) => {
+    setSelectedFile(newImage);
+  };
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -28,15 +33,38 @@ function UploadPhotoForm() {
                   <Controller
                     name="damagePhoto"
                     control={control}
-                    render={({ field }) => (
+                    render={({ field: { onChange, value } }) => (
                       <Button>
                         <input
-                          {...field}
                           accept="image/*"
                           className="hidden"
                           id="damagePhoto"
                           type="file"
                           fullWidth
+                          onChange={async (e) => {
+                            function readFileAsync() {
+                              return new Promise((resolve, reject) => {
+                                const file = e.target.files[0];
+                                if (!file) {
+                                  return;
+                                }
+                                handleFileInput(file);
+                                const reader = new FileReader();
+  
+                                reader.onload = () => {
+                                  resolve(`data:${file.type};base64,${btoa(reader.result)}`);
+                                };
+  
+                                reader.onerror = reject;
+  
+                                reader.readAsBinaryString(file);
+                              });
+                            }
+  
+                            const newImage = await readFileAsync();
+  
+                            onChange(newImage);
+                          }}
                         />
                       </Button>
                     )}

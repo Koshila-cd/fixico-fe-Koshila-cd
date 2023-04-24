@@ -17,10 +17,9 @@ import _ from 'lodash';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import submit from '../../api/submit';
 import ViewReport from '../view-reports/viewReport';
 import Header from '../header/header';
-// import upload from '../../api/upload';
+import axios from "axios";
 
 const steps = ['Vehicle information', 'Upload photo', 'Customer information'];
 
@@ -97,39 +96,34 @@ function SubmitForm() {
 
   const handleSubmitBtn = () => {
     setActiveStep(activeStep + 1);
-    const data = getValues();
-    console.log(data);
-    handleSubmit(data)
+    handleSubmit()
   }
 
   /**
    * Form Submit
    */
-  const handleSubmit = async (payload) => {
+  const handleSubmit = async () => {
+    const data = getValues();
+    console.log(data);
+    const payload = data;
 
     // submit form
-    const submitResponse = await fetch(submit, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: payload
-    });
-    
-    const data = await submitResponse.json();
-    console.log(data.uuid); // Log the uuid returned by the server
+    try {
+      const response = await axios.post('/api/submit', payload);
+      console.log(response.data.uuid);
+    } catch (error) {
+      console.error(error);
+    }
 
     // upload image
-    const uploadPhotoResponse = await fetch('upload', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: payload.damagePhoto
-    });
-
-    const data2 = await uploadPhotoResponse.json();
-    console.log(data2.uuid); // Log the uuid returned by the server
+    if (payload.damagePhoto != undefined) {
+      try {
+        const response = await axios.post('/api/upload', payload.damagePhoto);
+        console.log(response.data.uuid);
+      } catch (error) {
+        console.error(error);
+      }
+    }
   };
 
   // View report handler
