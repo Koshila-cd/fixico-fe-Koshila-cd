@@ -21,4 +21,4 @@ In this app, you should be able to do the following things:
 
 All changes are in Branch - Main.
 
-Note 1: Credits to [https://mui.com/material-ui/getting-started/templates/] for initial grid frame for the forms used in 'Submit Vehicle Damage Report' page.
+Note: Credits to [https://mui.com/material-ui/getting-started/templates/] for initial grid frame for the forms used in 'Submit Vehicle Damage Report' page.
