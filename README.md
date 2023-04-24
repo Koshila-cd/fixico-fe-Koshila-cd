@@ -26,7 +26,7 @@ In this app, you should be able to do the following things:
 - Heroicons for attractive SVG icons.
 
 Run the propject on development server using following commands:\
-`npm install`\
+`npm install --legacy-peer-deps`\
 `npm run build`\
 `npm run dev`
 
