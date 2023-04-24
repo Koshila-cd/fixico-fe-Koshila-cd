@@ -28,49 +28,26 @@ function UploadPhotoForm() {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <div className="absolute inset-0 flex items-center justify-center z-20">
-              <div>
-                <label htmlFor="button-file" className="flex p-8 cursor-pointer">
-                  <Controller
-                    name="damagePhoto"
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                      <Button>
-                        <input
-                          accept="image/*"
-                          className="hidden"
-                          id="damagePhoto"
-                          type="file"
-                          fullWidth
-                          onChange={async (e) => {
-                            function readFileAsync() {
-                              return new Promise((resolve, reject) => {
-                                const file = e.target.files[0];
-                                if (!file) {
-                                  return;
-                                }
-                                handleFileInput(file);
-                                const reader = new FileReader();
-  
-                                reader.onload = () => {
-                                  resolve(`data:${file.type};base64,${btoa(reader.result)}`);
-                                };
-  
-                                reader.onerror = reject;
-  
-                                reader.readAsBinaryString(file);
-                              });
-                            }
-  
-                            const newImage = await readFileAsync();
-  
-                            onChange(newImage);
-                          }}
-                        />
-                      </Button>
-                    )}
-                  />
-                </label>
-              </div>
+            <div>
+              <label htmlFor="button-file" className="flex p-8 cursor-pointer">
+                <Controller
+                  name="damagePhoto"
+                  control={control}
+                  render={({ field }) => (
+                    <Button>
+                      <input
+                        {...field}
+                        accept="image/*"
+                        className="hidden"
+                        id="damagePhoto"
+                        type="file"
+                        fullWidth
+                      />
+                    </Button>
+                  )}
+                />
+              </label>
+            </div>
           </div>
         </Grid>
         <Grid item xs={12}>
