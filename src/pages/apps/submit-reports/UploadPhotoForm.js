@@ -41,6 +41,7 @@ function UploadPhotoForm() {
                         className="hidden"
                         id="damagePhoto"
                         type="file"
+                        multiple
                         fullWidth
                       />
                     </Button>
