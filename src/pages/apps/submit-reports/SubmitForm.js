@@ -158,7 +158,7 @@ function SubmitForm() {
                 <Button
                   variant="contained"
                   color="primary"
-                  href='/apps/home/Home'
+                  href='/'
                   sx={{ mt: 3, ml: 1 }}
                 >
                   Back to Home
