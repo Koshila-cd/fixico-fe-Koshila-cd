@@ -19,6 +19,12 @@ In this app, you should be able to do the following things:
 - Node server-side.
 - Jest unit testing to ensure correctness of the JavaScript codebase.
 
+### Minor Libraries
+
+- YupResolver to validate data.
+- Axios as HTTP client.
+- Heroicons for attractive SVG icons.
+
 All changes are in Branch - Main.
 
 Note: Credits to [https://mui.com/material-ui/getting-started/templates/] for initial grid frame for the forms used in 'Submit Vehicle Damage Report' page.
